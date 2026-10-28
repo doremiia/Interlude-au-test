@@ -1,461 +1,296 @@
 
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <!-- FUNGSI: Mendukung karakter dan teks bahasa Indonesia -->
   <meta charset="UTF-8">
-
-  <!-- JANGAN HAPUS: Menyesuaikan website dengan layar HP Android -->
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  >
-
-  <!-- UBAH: Warna browser saat website dibuka -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111111">
-
-  <!-- UBAH: Deskripsi website -->
-  <meta
-    name="description"
-    content="Interlude AU — an interactive fictional phone experience."
-  >
-
-  <!-- UBAH: Judul website -->
+  <meta name="description" content="Interlude AU — an interactive fictional phone experience.">
   <title>Interlude AU</title>
-
-  <!-- JANGAN HAPUS: File desain -->
   <link rel="stylesheet" href="./style.css">
-
-  <!-- JANGAN HAPUS: File interaksi -->
   <script src="./script.js" defer></script>
 </head>
 
 <body>
+  <!-- Kumpulan ikon SVG supaya konsisten di home screen dan dock -->
+  <svg xmlns="http://www.w3.org/2000/svg"
+       style="position:absolute;width:0;height:0;overflow:hidden"
+       aria-hidden="true">
 
-  <!-- ================================================== -->
-  <!-- BAGIAN 1: KERANGKA PONSEL                           -->
-  <!-- ================================================== -->
+    <symbol id="svg-messages" viewBox="0 0 48 48">
+      <path d="M24 5C13 5 5 12 5 21c0 5 3 10 8 13l-2 8 10-5c1 .2 2 .3 3 .3 11 0 19-7 19-16S35 5 24 5Z" fill="#fff"/>
+    </symbol>
 
-  <!-- JANGAN HAPUS: Semua layar ponsel berada di dalam elemen ini -->
+    <symbol id="svg-instagram" viewBox="0 0 48 48">
+      <rect x="5" y="5" width="38" height="38" rx="11" fill="none" stroke="#fff" stroke-width="3.5"/>
+      <circle cx="24" cy="24" r="9" fill="none" stroke="#fff" stroke-width="3.5"/>
+      <circle cx="35" cy="13" r="2.5" fill="#fff"/>
+    </symbol>
+
+    <symbol id="svg-photos" viewBox="0 0 48 48">
+      <g transform="translate(24 24)">
+        <ellipse cy="-10" rx="6.5" ry="10" fill="#ff6259"/>
+        <ellipse cy="-10" rx="6.5" ry="10" fill="#ffb64c" transform="rotate(60)"/>
+        <ellipse cy="-10" rx="6.5" ry="10" fill="#ffe45b" transform="rotate(120)"/>
+        <ellipse cy="-10" rx="6.5" ry="10" fill="#63cf78" transform="rotate(180)"/>
+        <ellipse cy="-10" rx="6.5" ry="10" fill="#45b9ef" transform="rotate(240)"/>
+        <ellipse cy="-10" rx="6.5" ry="10" fill="#a478f2" transform="rotate(300)"/>
+        <circle r="4" fill="#fff"/>
+      </g>
+    </symbol>
+
+    <symbol id="svg-notes" viewBox="0 0 48 48">
+      <rect x="6" y="4" width="36" height="40" rx="4" fill="#fff"/>
+      <path d="M6 15H42" stroke="#f3c94c" stroke-width="7"/>
+      <path d="M13 23H35M13 29H35M13 35H30" stroke="#d0d0d4" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="svg-safari" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22" fill="#fff"/>
+      <circle cx="24" cy="24" r="19" fill="#168ee9"/>
+      <circle cx="24" cy="24" r="15" fill="none" stroke="#b8e7ff" stroke-width="1"/>
+      <path d="M31 13L26 26L15 35L22 22Z" fill="#fff"/>
+      <path d="M17 35L22 22L33 13L26 26Z" fill="#ff4d5c"/>
+    </symbol>
+
+    <symbol id="svg-phone" viewBox="0 0 48 48">
+      <path d="M12 5L20 14L16 19Q20 28 29 32L34 27L43 35L39 42Q36 45 30 42C18 37 9 28 5 17Q3 11 8 7Z" fill="#fff"/>
+    </symbol>
+
+    <symbol id="svg-contacts" viewBox="0 0 48 48">
+      <rect x="9" y="5" width="30" height="38" rx="5" fill="#fff"/>
+      <circle cx="24" cy="18" r="7" fill="#d9a56e"/>
+      <path d="M12 37Q13 26 24 26Q35 26 36 37Z" fill="#d9a56e"/>
+    </symbol>
+
+    <symbol id="svg-calendar" viewBox="0 0 48 48">
+      <rect x="4" y="5" width="40" height="38" rx="5" fill="#fff"/>
+      <path d="M4 16H44" stroke="#ed454b" stroke-width="9"/>
+      <path d="M15 3V10M33 3V10" stroke="#b7b7bb" stroke-width="3" stroke-linecap="round"/>
+      <text x="24" y="35" text-anchor="middle" font-size="20" font-weight="700" fill="#292929">1</text>
+    </symbol>
+
+    <symbol id="svg-files" viewBox="0 0 48 48">
+      <path d="M4 12Q4 8 8 8H20L25 13H40Q44 13 44 17V36Q44 40 40 40H8Q4 40 4 36Z" fill="#fff"/>
+      <path d="M6 20H42L38 36H10Z" fill="#d7edff"/>
+    </symbol>
+
+    <symbol id="svg-settings" viewBox="0 0 48 48">
+      <path d="M20 3H28L30 9L35 11L41 9L45 17L40 21V28L45 32L41 40L34 38L29 41L28 46H20L19 41L13 38L7 40L3 32L8 28V21L3 17L7 9L14 11L19 9Z" fill="#fff"/>
+      <circle cx="24" cy="24" r="9" fill="#9298a2"/>
+      <circle cx="24" cy="24" r="4" fill="#e7e9ed"/>
+    </symbol>
+
+  </svg>
+
   <main id="phone" class="phone" aria-label="Interlude virtual phone">
 
-
-    <!-- ================================================== -->
-    <!-- BAGIAN 2: STATUS BAR                               -->
-    <!-- ================================================== -->
-
-    <!-- FUNGSI: Status bar tetap berada di atas layar -->
+    <!-- STATUS BAR -->
     <header id="status-bar" class="status-bar">
-
-      <!-- TODO: Jam akan dibuat dinamis melalui JavaScript -->
       <span id="status-time">9:41</span>
-
-      <!-- FUNGSI: Indikator status jaringan dan baterai -->
       <div class="status-icons" aria-label="Phone status">
-
-        <!-- TODO: Ganti simbol sementara dengan ikon yang lebih realistis -->
         <span class="signal-icon" aria-label="Signal">●●●</span>
-
         <span class="wifi-icon" aria-label="Wi-Fi">Wi-Fi</span>
-
-        <!-- FUNGSI: Indikator baterai -->
         <span class="battery" aria-label="Battery">
           <span class="battery-level"></span>
         </span>
-
       </div>
     </header>
 
-
-    <!-- ================================================== -->
-    <!-- BAGIAN 3: LOCK SCREEN                              -->
-    <!-- ================================================== -->
-
-    <!-- FUNGSI: Layar pertama saat pembaca membuka website -->
-    <section
-      id="lock-screen"
-      class="screen lock-screen"
-      aria-label="Lock screen"
-    >
-
+    <!-- LOCK SCREEN -->
+    <section id="lock-screen" class="screen lock-screen" aria-label="Lock screen">
       <div class="lock-content">
-
-        <!-- TODO: Tanggal disesuaikan dengan waktu cerita -->
-        <p id="lock-date" class="lock-date">
-          Monday, September 1
-        </p>
-
-        <!-- TODO: Jam besar akan disinkronkan dengan status bar -->
+        <p id="lock-date" class="lock-date">Monday, September 1</p>
         <h1 id="lock-time" class="lock-time">09:41</h1>
-
-        <!-- UBAH: Teks kecil di bawah jam -->
         <p class="lock-subtitle">Interlude AU</p>
-
       </div>
 
-
-      <!-- ================================================== -->
-      <!-- NOTIFIKASI LOCK SCREEN                            -->
-      <!-- ================================================== -->
-
-      <!-- FUNGSI: Tempat notifikasi pesan dan aktivitas aplikasi -->
-      <div
-        id="notification-area"
-        class="notification-area"
-        aria-label="Notifications"
-        aria-live="polite"
-      >
-
-        <!-- TODO: JavaScript akan menambahkan notifikasi di sini -->
-
-      </div>
-
-
-      <!-- ================================================== -->
-      <!-- TOMBOL BAWAH LOCK SCREEN                          -->
-      <!-- ================================================== -->
+      <div id="notification-area" class="notification-area"
+           aria-label="Notifications" aria-live="polite"></div>
 
       <div class="lock-bottom">
-
-        <!-- TODO: Shortcut senter; belum aktif -->
-        <button
-          id="flashlight-button"
-          class="lock-shortcut"
-          type="button"
-          aria-label="Flashlight"
-          disabled
-        >
-          <span aria-hidden="true">◉</span>
+        <button id="flashlight-button" class="lock-shortcut"
+                type="button" aria-label="Flashlight" disabled>
+          ◉
         </button>
 
-
-        <!-- FUNGSI: Membuka layar passcode -->
-        <button
-          id="unlock-button"
-          class="unlock-button"
-          type="button"
-        >
+        <button id="unlock-button" class="unlock-button" type="button">
           Tap to unlock
         </button>
 
-
-        <!-- TODO: Shortcut kamera; belum aktif -->
-        <button
-          id="camera-button"
-          class="lock-shortcut"
-          type="button"
-          aria-label="Camera"
-          disabled
-        >
-          <span aria-hidden="true">▣</span>
+        <button id="camera-button" class="lock-shortcut"
+                type="button" aria-label="Camera" disabled>
+          ▣
         </button>
-
       </div>
     </section>
 
-
-    <!-- ================================================== -->
-    <!-- BAGIAN 4: PASSCODE SCREEN                          -->
-    <!-- ================================================== -->
-
-    <!-- FUNGSI: Layar kode sandi sebelum masuk ke home screen -->
-    <!-- TODO: JavaScript akan mengatur input kode dan perpindahan layar -->
-    <section
-      id="passcode-screen"
-      class="screen passcode-screen"
-      aria-label="Passcode screen"
-      hidden
-    >
-
+    <!-- PASSCODE -->
+    <section id="passcode-screen" class="screen passcode-screen"
+             aria-label="Passcode screen" hidden>
       <div class="passcode-content">
-
-        <!-- UBAH: Judul layar passcode -->
         <h2 class="passcode-title">Enter Passcode</h2>
+        <p class="passcode-description">Enter your passcode to continue.</p>
 
-        <p class="passcode-description">
-          Enter your passcode to continue.
-        </p>
-
-        <!-- FUNGSI: Indikator jumlah digit yang dimasukkan -->
-        <div
-          id="passcode-dots"
-          class="passcode-dots"
-          aria-label="Passcode entry"
-          aria-live="polite"
-        >
+        <div id="passcode-dots" class="passcode-dots"
+             aria-label="Passcode entry" aria-live="polite">
           <span class="passcode-dot"></span>
           <span class="passcode-dot"></span>
           <span class="passcode-dot"></span>
           <span class="passcode-dot"></span>
         </div>
 
-        <!-- FUNGSI: Pesan kesalahan kode sandi -->
-        <p
-          id="passcode-error"
-          class="passcode-error"
-          role="status"
-          aria-live="polite"
-        ></p>
+        <p id="passcode-error" class="passcode-error"
+           role="status" aria-live="polite"></p>
 
-        <!-- TODO: JavaScript akan membaca tombol angka -->
         <div id="passcode-keypad" class="passcode-keypad">
-
           <button type="button" class="passcode-key" data-digit="1">1</button>
           <button type="button" class="passcode-key" data-digit="2">2</button>
           <button type="button" class="passcode-key" data-digit="3">3</button>
-
           <button type="button" class="passcode-key" data-digit="4">4</button>
           <button type="button" class="passcode-key" data-digit="5">5</button>
           <button type="button" class="passcode-key" data-digit="6">6</button>
-
           <button type="button" class="passcode-key" data-digit="7">7</button>
           <button type="button" class="passcode-key" data-digit="8">8</button>
           <button type="button" class="passcode-key" data-digit="9">9</button>
-
-          <button
-            type="button"
-            id="passcode-delete"
-            class="passcode-action"
-          >
-            Delete
-          </button>
-
+          <button type="button" id="passcode-delete" class="passcode-action">Delete</button>
           <button type="button" class="passcode-key" data-digit="0">0</button>
-
-          <button
-            type="button"
-            id="passcode-cancel"
-            class="passcode-action"
-          >
-            Cancel
-          </button>
-
+          <button type="button" id="passcode-cancel" class="passcode-action">Cancel</button>
         </div>
-
       </div>
     </section>
 
+    <!-- HOME SCREEN -->
+    <section id="home-screen" class="screen home-screen"
+             aria-label="Home screen" hidden>
 
-    <!-- ================================================== -->
-    <!-- BAGIAN 5: HOME SCREEN                              -->
-    <!-- ================================================== -->
-
-    <!-- FUNGSI: Home screen muncul setelah ponsel dibuka -->
-    <section
-      id="home-screen"
-      class="screen home-screen"
-      aria-label="Home screen"
-      hidden
-    >
-
-      <!-- FUNGSI: Bagian informasi dan sapaan -->
       <header class="home-header">
-
-        <!-- TODO: Tanggal mengikuti timeline AU -->
-        <p id="home-date" class="home-date">
-          Monday, September 1
-        </p>
-
-        <!-- UBAH: Sapaan di home screen -->
+        <p id="home-date" class="home-date">Monday, September 1</p>
         <p class="home-greeting">Your little world.</p>
-
       </header>
 
+      <!-- APP GRID -->
+      <nav id="app-grid" class="app-grid" aria-label="Applications">
 
-      <!-- ================================================== -->
-      <!-- BAGIAN 5A: APP GRID                               -->
-      <!-- ================================================== -->
-
-      <!-- FUNGSI: Ikon aplikasi yang dapat dibuka -->
-      <nav
-        id="app-grid"
-        class="app-grid"
-        aria-label="Applications"
-      >
-
-        <!-- APLIKASI: Messages -->
         <button class="app-item" type="button" data-app="messages">
-          <span class="app-icon icon-messages" aria-hidden="true">✉</span>
+          <span class="app-icon icon-messages" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-messages"/></svg>
+          </span>
           <span class="app-label">Messages</span>
         </button>
 
-        <!-- APLIKASI: Instagram -->
         <button class="app-item" type="button" data-app="instagram">
-          <span class="app-icon icon-instagram" aria-hidden="true">◎</span>
+          <span class="app-icon icon-instagram" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-instagram"/></svg>
+          </span>
           <span class="app-label">Instagram</span>
         </button>
 
-        <!-- APLIKASI: Photos -->
         <button class="app-item" type="button" data-app="photos">
-          <span class="app-icon icon-photos" aria-hidden="true">✿</span>
+          <span class="app-icon icon-photos" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-photos"/></svg>
+          </span>
           <span class="app-label">Photos</span>
         </button>
 
-        <!-- APLIKASI: Notes -->
         <button class="app-item" type="button" data-app="notes">
-          <span class="app-icon icon-notes" aria-hidden="true">▤</span>
+          <span class="app-icon icon-notes" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-notes"/></svg>
+          </span>
           <span class="app-label">Notes</span>
         </button>
 
-        <!-- APLIKASI: Safari -->
         <button class="app-item" type="button" data-app="safari">
-          <span class="app-icon icon-safari" aria-hidden="true">◉</span>
+          <span class="app-icon icon-safari" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-safari"/></svg>
+          </span>
           <span class="app-label">Safari</span>
         </button>
 
-        <!-- APLIKASI: Phone -->
         <button class="app-item" type="button" data-app="phone">
-          <span class="app-icon icon-phone" aria-hidden="true">☎</span>
+          <span class="app-icon icon-phone" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-phone"/></svg>
+          </span>
           <span class="app-label">Phone</span>
         </button>
 
-        <!-- APLIKASI: Contacts -->
         <button class="app-item" type="button" data-app="contacts">
-          <span class="app-icon icon-contacts" aria-hidden="true">♟</span>
+          <span class="app-icon icon-contacts" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-contacts"/></svg>
+          </span>
           <span class="app-label">Contacts</span>
         </button>
 
-        <!-- APLIKASI: Calendar -->
         <button class="app-item" type="button" data-app="calendar">
-          <span class="app-icon icon-calendar" aria-hidden="true">31</span>
+          <span class="app-icon icon-calendar" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-calendar"/></svg>
+          </span>
           <span class="app-label">Calendar</span>
         </button>
 
-        <!-- APLIKASI: Files -->
         <button class="app-item" type="button" data-app="files">
-          <span class="app-icon icon-files" aria-hidden="true">▰</span>
+          <span class="app-icon icon-files" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-files"/></svg>
+          </span>
           <span class="app-label">Files</span>
         </button>
 
-        <!-- APLIKASI: Settings -->
         <button class="app-item" type="button" data-app="settings">
-          <span class="app-icon icon-settings" aria-hidden="true">⚙</span>
+          <span class="app-icon icon-settings" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-settings"/></svg>
+          </span>
           <span class="app-label">Settings</span>
         </button>
-
-        <!-- TODO: Tambahkan aplikasi lain jika dibutuhkan cerita -->
-
       </nav>
 
-
-      <!-- ================================================== -->
-      <!-- BAGIAN 5B: DOCK                                  -->
-      <!-- ================================================== -->
-
-      <!-- FUNGSI: Bar aplikasi favorit di bawah home screen -->
+      <!-- DOCK -->
       <nav id="app-dock" class="app-dock" aria-label="Dock">
-
-        <!-- UBAH: Aplikasi yang ingin ditampilkan di dock -->
-
-        <button
-          class="dock-item"
-          type="button"
-          data-app="phone"
-          aria-label="Phone"
-        >
-          <span class="app-icon icon-phone" aria-hidden="true">☎</span>
+        <button class="dock-item" type="button" data-app="phone" aria-label="Phone">
+          <span class="app-icon icon-phone" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-phone"/></svg>
+          </span>
         </button>
 
-        <button
-          class="dock-item"
-          type="button"
-          data-app="messages"
-          aria-label="Messages"
-        >
-          <span class="app-icon icon-messages" aria-hidden="true">✉</span>
+        <button class="dock-item" type="button" data-app="messages" aria-label="Messages">
+          <span class="app-icon icon-messages" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-messages"/></svg>
+          </span>
         </button>
 
-        <button
-          class="dock-item"
-          type="button"
-          data-app="safari"
-          aria-label="Safari"
-        >
-          <span class="app-icon icon-safari" aria-hidden="true">◉</span>
+        <button class="dock-item" type="button" data-app="safari" aria-label="Safari">
+          <span class="app-icon icon-safari" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-safari"/></svg>
+          </span>
         </button>
 
-        <button
-          class="dock-item"
-          type="button"
-          data-app="photos"
-          aria-label="Photos"
-        >
-          <span class="app-icon icon-photos" aria-hidden="true">✿</span>
+        <button class="dock-item" type="button" data-app="photos" aria-label="Photos">
+          <span class="app-icon icon-photos" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><use href="#svg-photos"/></svg>
+          </span>
         </button>
-
       </nav>
     </section>
 
-
-    <!-- ================================================== -->
-    <!-- BAGIAN 6: APP SCREEN                               -->
-    <!-- ================================================== -->
-
-    <!-- FUNGSI: Wadah konten saat aplikasi dibuka -->
-    <section
-      id="app-screen"
-      class="screen app-screen"
-      aria-label="Open application"
-      hidden
-    >
-
-      <!-- FUNGSI: Header aplikasi -->
+    <!-- APP SCREEN -->
+    <section id="app-screen" class="screen app-screen"
+             aria-label="Open application" hidden>
       <header class="app-header">
-
-        <!-- FUNGSI: Kembali ke home screen atau layar sebelumnya -->
-        <button
-          id="app-back-button"
-          class="app-back-button"
-          type="button"
-          aria-label="Back"
-        >
-          ‹
-        </button>
-
-        <!-- TODO: Judul berubah mengikuti aplikasi yang dibuka -->
+        <button id="app-back-button" class="app-back-button"
+                type="button" aria-label="Back">‹</button>
         <h2 id="app-title" class="app-title">Application</h2>
-
-        <!-- TODO: Menu aplikasi jika fitur tambahan dibutuhkan -->
-        <button
-          id="app-menu-button"
-          class="app-menu-button"
-          type="button"
-          aria-label="More options"
-        >
-          •••
-        </button>
-
+        <button id="app-menu-button" class="app-menu-button"
+                type="button" aria-label="More options">•••</button>
       </header>
 
-
-      <!-- ================================================== -->
-      <!-- KONTEN APLIKASI                                   -->
-      <!-- ================================================== -->
-
-      <!-- JANGAN HAPUS: JavaScript akan menampilkan isi aplikasi di sini -->
-      <div id="app-content" class="app-content">
-
-        <!-- TODO: Messages, Instagram, Photos, Notes, dan aplikasi lainnya -->
-
-      </div>
-
+      <div id="app-content" class="app-content"></div>
     </section>
 
-
-    <!-- ================================================== -->
-    <!-- BAGIAN 7: HOME INDICATOR                           -->
-    <!-- ================================================== -->
-
-    <!-- FUNGSI: Tombol navigasi bawah seperti iPhone -->
-    <button
-      id="home-indicator"
-      class="home-indicator"
-      type="button"
-      aria-label="Return to home screen"
-    ></button>
+    <!-- HOME INDICATOR -->
+    <button id="home-indicator" class="home-indicator"
+            type="button" aria-label="Return to home screen"></button>
 
   </main>
 
+  <!-- Penutup body -->
 </body>
 </html>
