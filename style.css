@@ -100,6 +100,47 @@
   font-weight: 700;
 }
 
+/* INTERLUDE AU — ikon SVG */
+.app-icon {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.app-icon svg {
+  display: block;
+  width: 76%;
+  height: 76%;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.app-item,
+.dock-item {
+  min-width: 0;
+}
+
+.app-item .app-icon {
+  border-radius: 14px;
+}
+
+.dock-item .app-icon {
+  border-radius: 14px;
+}
+
+.app-dock {
+  background: rgba(245, 243, 248, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(150%);
+}
+
+.app-item:active,
+.dock-item:active {
+  opacity: 0.8;
+}
+
+
 .icon-files {
   background: linear-gradient(145deg, #82d2ff, #398eea);
   color: #fff;
@@ -195,4 +236,5 @@
   .app-dock {
     padding-inline: 5px;
   }
+   
 }
