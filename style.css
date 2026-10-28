@@ -1,819 +1,181 @@
 
-/* =========================================================
-   INTERLUDE AU — STYLE.CSS
-   FUNGSI: Mengatur tampilan simulator HP dan seluruh layar.
-   UBAH: Warna, ukuran, wallpaper, dan efek visual di sini.
-   JANGAN HAPUS: Nama class dan ID yang terhubung ke index.html.
-   ========================================================= */
+/* ==========================================
+   INTERLUDE AU — UI POLISH
+   Upgrade home screen ala iOS
+   ========================================== */
 
-/* ---------- 1. VARIABEL DESAIN ---------- */
-
-:root {
-  /* UBAH: Warna utama tampilan */
-  --accent: #e8d8d1;
-  --accent-dark: #b99d93;
-  --text-main: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.72);
-
-  /* Warna permukaan */
-  --glass: rgba(24, 24, 29, 0.48);
-  --glass-strong: rgba(20, 20, 25, 0.78);
-  --border-glass: rgba(255, 255, 255, 0.16);
-
-  /* Ukuran dan bentuk */
-  --phone-radius: 42px;
-  --screen-padding: 24px;
-  --icon-size: 56px;
-
-  /* Font */
-  --font-main: -apple-system, BlinkMacSystemFont,
-    "SF Pro Display", "Segoe UI", sans-serif;
-}
-
-/* ---------- 2. RESET DASAR ---------- */
-
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
-
-html {
-  min-height: 100%;
-  background: #111113;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background:
-    radial-gradient(
-      ellipse at top,
-      #393137 0%,
-      #19181d 48%,
-      #0b0b0d 100%
-    );
-  color: var(--text-main);
-  font-family: var(--font-main);
-  -webkit-font-smoothing: antialiased;
-}
-
-button {
-  color: inherit;
-  font: inherit;
-  border: 0;
-  cursor: pointer;
-  touch-action: manipulation;
-}
-
-button:focus-visible {
-  outline: 2px solid white;
-  outline-offset: 4px;
-}
-
-button:active {
-  transform: scale(0.96);
-}
-
-/* ---------- 3. BINGKAI HP ---------- */
-
-/* FUNGSI: Menampilkan simulator sebagai sebuah HP.
-   Di layar kecil, bingkai memenuhi area yang tersedia. */
-
-.phone {
-  position: relative;
-  isolation: isolate;
-  width: min(100%, 390px);
-  height: min(844px, calc(100dvh - 40px));
-  min-height: 560px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: var(--phone-radius);
-  background: #18181c;
-  box-shadow:
-    0 35px 90px rgba(0, 0, 0, 0.55),
-    0 0 0 5px rgba(255, 255, 255, 0.035),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
-}
-
-/* Semua layar memakai wallpaper yang sama.
-   UBAH: Ganti path ini jika nama atau lokasi gambar berubah. */
-
-.screen {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  background-color: #242127;
-  background-image:
-    linear-gradient(
-      to bottom,
-      rgba(10, 10, 14, 0.12),
-      rgba(10, 10, 14, 0.20) 45%,
-      rgba(10, 10, 14, 0.62)
-    ),
-    url("./assets/img/wallpaper-shaqil.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-/* JANGAN HAPUS: Menjamin layar tersembunyi tidak muncul
-   sebelum JavaScript membukanya. */
-
-[hidden] {
-  display: none !important;
-}
-
-/* ---------- 4. STATUS BAR ---------- */
-
-.status-bar {
-  position: absolute;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 48px;
-  padding: 0 27px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 650;
-  letter-spacing: 0.1px;
-  pointer-events: none;
-}
-
-#status-time {
-  font-variant-numeric: tabular-nums;
-}
-
-.status-icons {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.signal-icon {
-  width: 17px;
-  height: 13px;
-  background:
-    linear-gradient(to top, #fff 0 30%, transparent 30%) 0 0 / 4px 100%,
-    linear-gradient(to top, #fff 0 50%, transparent 50%) 5px 0 / 4px 100%,
-    linear-gradient(to top, #fff 0 72%, transparent 72%) 10px 0 / 4px 100%,
-    linear-gradient(to top, #fff 0 100%, transparent 100%) 15px 0 / 2px 100%;
-  background-repeat: no-repeat;
-}
-
-.wifi-icon {
-  width: 16px;
-  height: 13px;
-  position: relative;
-  overflow: hidden;
-}
-
-.wifi-icon::before {
-  content: "";
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  left: 0;
-  top: -8px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-}
-
-.wifi-icon::after {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  left: 3.5px;
-  top: -4px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-}
-
-.battery {
-  position: relative;
-  width: 23px;
-  height: 11px;
-  padding: 1.5px;
-  border: 1.2px solid rgba(255, 255, 255, 0.9);
-  border-radius: 3px;
-}
-
-.battery::after {
-  content: "";
-  position: absolute;
-  right: -3.5px;
-  top: 2.5px;
-  width: 2px;
-  height: 4px;
-  border-radius: 0 2px 2px 0;
-  background: #fff;
-}
-
-.battery-level {
-  width: 75%;
-  height: 100%;
-  border-radius: 1px;
-  background: #fff;
-}
-
-/* ---------- 5. LOCK SCREEN ---------- */
-
-.lock-screen {
-  z-index: 1;
-  color: #fff;
-}
-
-.lock-content {
-  position: absolute;
-  inset: 70px 0 0;
-  padding: 0 var(--screen-padding);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.lock-date {
-  margin-top: 25px;
-  font-size: 16px;
-  font-weight: 550;
-  text-align: center;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-}
-
-.lock-time {
-  margin-top: 2px;
-  font-size: clamp(76px, 23vw, 102px);
-  line-height: 1.08;
-  font-weight: 300;
-  letter-spacing: -5px;
-  font-variant-numeric: tabular-nums;
-  text-align: center;
-  text-shadow: 0 3px 24px rgba(0, 0, 0, 0.16);
-}
-
-.lock-subtitle {
-  margin-top: 8px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.88);
-  text-align: center;
-}
-
-/* Area notifikasi pada lock screen */
-
-.notification-area {
-  width: 100%;
-  margin-top: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-
-.notification {
-  width: 100%;
-  padding: 13px 15px;
-  border: 1px solid var(--border-glass);
-  border-radius: 18px;
-  background: rgba(40, 38, 43, 0.58);
-  -webkit-backdrop-filter: blur(22px);
-  backdrop-filter: blur(22px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
-}
-
-.notification-title {
-  margin-bottom: 4px;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.notification-body {
-  font-size: 13px;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.unlock-button {
-  position: absolute;
-  bottom: 67px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 154px;
-  padding: 12px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
-}
-
-.unlock-button:active {
-  transform: translateX(-50%) scale(0.96);
-}
-
-.lock-shortcut {
-  position: absolute;
-  bottom: 24px;
-  display: grid;
-  place-items: center;
-  width: 45px;
-  height: 45px;
-  border: 1px solid rgba(255, 255, 255, 0.17);
-  border-radius: 50%;
-  background: rgba(20, 20, 25, 0.35);
-  -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
-  color: #fff;
-  font-size: 19px;
-}
-
-#flashlight-button {
-  left: 25px;
-}
-
-#camera-button {
-  right: 25px;
-}
-
-/* ---------- 6. PASSCODE SCREEN ---------- */
-
-.passcode-screen {
-  z-index: 2;
-  background-image:
-    linear-gradient(
-      rgba(12, 12, 17, 0.58),
-      rgba(12, 12, 17, 0.76)
-    ),
-    url("./assets/img/wallpaper-shaqil.jpg");
-  color: #fff;
-}
-
-.passcode-content {
-  position: absolute;
-  inset: 90px 0 45px;
-  padding: 15px 34px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.passcode-title {
-  margin-top: 16px;
-  font-size: 23px;
-  font-weight: 650;
-  text-align: center;
-}
-
-.passcode-description {
-  margin-top: 9px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.75);
-  text-align: center;
-}
-
-.passcode-dots {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin: 30px 0 9px;
-}
-
-.passcode-dot {
-  width: 11px;
-  height: 11px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  background: transparent;
-}
-
-.passcode-dot.filled {
-  background: #fff;
-}
-
-.passcode-error {
-  min-height: 20px;
-  margin-top: 2px;
-  color: #ffb7b7;
-  font-size: 12px;
-  text-align: center;
-}
-
-.passcode-keypad {
-  width: min(100%, 280px);
-  margin-top: auto;
-  margin-bottom: 17px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 13px 20px;
-}
-
-.passcode-key {
-  width: 64px;
-  height: 64px;
-  justify-self: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.13);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  color: #fff;
-  font-size: 27px;
-  font-weight: 400;
-}
-
-.passcode-key small {
-  margin-top: 1px;
-  font-size: 8px;
-  letter-spacing: 2px;
-}
-
-.passcode-key:active,
-.passcode-action:active {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.passcode-action {
-  min-width: 64px;
-  min-height: 52px;
-  justify-self: center;
-  align-self: center;
-  padding: 8px 3px;
-  background: transparent;
-  color: #fff;
-  font-size: 12px;
-}
-
-/* ---------- 7. HOME SCREEN ---------- */
-
+/* Home screen lebih rapi dan menyerupai iPhone */
 .home-screen {
-  z-index: 3;
-  padding: 64px 22px 32px;
-  display: flex;
-  flex-direction: column;
-  color: #fff;
+  padding: 62px 23px 30px;
+  background-position: center;
 }
 
 .home-header {
-  margin: 12px 2px 22px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  margin: 15px 2px 27px;
 }
 
 .home-date {
   font-size: 13px;
-  font-weight: 550;
-  color: rgba(255, 255, 255, 0.84);
+  letter-spacing: 0.15px;
+  font-weight: 600;
+  text-shadow: 0 1px 8px #0005;
 }
 
 .home-greeting {
-  margin-top: 5px;
-  font-size: 26px;
-  line-height: 1.15;
-  font-weight: 700;
-  letter-spacing: -0.7px;
+  margin-top: 6px;
+  font-size: 28px;
+  line-height: 1.12;
+  font-weight: 650;
+  letter-spacing: -0.9px;
+  text-shadow: 0 2px 12px #0004;
 }
 
-/* Grid ikon aplikasi */
-
+/* Jarak grid ikon lebih konsisten */
 .app-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  column-gap: 9px;
-  row-gap: 23px;
-  align-content: start;
+  column-gap: 7px;
+  row-gap: 25px;
 }
 
 .app-item {
-  min-width: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 7px;
-  background: transparent;
-  color: #fff;
 }
 
 .app-icon {
-  position: relative;
-  width: var(--icon-size);
-  height: var(--icon-size);
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 16px;
-  box-shadow: 0 5px 13px rgba(0, 0, 0, 0.2);
-  font-size: 27px;
-  line-height: 1;
-}
-
-.app-label {
-  max-width: 100%;
-  overflow: hidden;
-  color: #fff;
-  font-size: 11px;
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  border: 1px solid #ffffff24;
+  box-shadow:
+    0 5px 12px #0002,
+    inset 0 1px 1px #ffffff30;
+  font-size: 28px;
   font-weight: 500;
-  line-height: 1.25;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 }
 
-/* ---------- 8. DESAIN IKON APLIKASI ---------- */
-
-/* UBAH: Emoji sementara bisa diganti ikon gambar/SVG nanti. */
-
+/* Warna ikon lebih kaya dan glossy */
 .icon-messages {
-  background: linear-gradient(145deg, #65e878, #18b94c);
-  color: white;
+  background: linear-gradient(155deg, #69e879, #28c653 70%, #19ad45);
+  color: #fff;
 }
 
 .icon-instagram {
   background: linear-gradient(
-    145deg,
-    #7b42cf,
-    #e93d80 55%,
-    #ffb34f
+    35deg,
+    #ffca62 0%,
+    #f64b66 38%,
+    #c837ab 68%,
+    #6755db 100%
   );
-  color: white;
+  color: #fff;
 }
 
 .icon-photos {
-  background: linear-gradient(145deg, #fff, #e8e8ed);
-  color: #e56e9a;
+  background: linear-gradient(145deg, #fff, #f4f2f7);
+  color: #ed659b;
 }
 
 .icon-notes {
-  background: linear-gradient(180deg, #fff 0 24%, #f1f1f3 24%);
-  color: #333;
+  background: linear-gradient(180deg, #fff 0 25%, #f8eeb0 25%, #fff8ce);
+  color: #7b7b7b;
 }
 
 .icon-safari {
-  background: linear-gradient(145deg, #75d7ff, #1681ed);
-  color: white;
+  background: linear-gradient(145deg, #78dfff, #1684ef 75%, #0864d8);
+  color: #fff;
 }
 
 .icon-phone {
-  background: linear-gradient(145deg, #5fe27c, #16b64c);
-  color: white;
+  background: linear-gradient(145deg, #62e780, #28c956 75%, #19ac43);
+  color: #fff;
 }
 
 .icon-contacts {
-  background: linear-gradient(145deg, #f7d6a4, #c98c52);
-  color: white;
+  background: linear-gradient(145deg, #ffd9a3, #d79b61);
+  color: #fff;
 }
 
 .icon-calendar {
-  background: linear-gradient(180deg, #fff 0 25%, #f5f5f7 25%);
-  color: #ef4c50;
+  background: linear-gradient(180deg, #fff 0 24%, #f7f7f9 24%);
+  color: #ed454b;
+  font-weight: 700;
 }
 
 .icon-files {
-  background: linear-gradient(145deg, #79c8ff, #3c8de5);
-  color: white;
+  background: linear-gradient(145deg, #82d2ff, #398eea);
+  color: #fff;
 }
 
 .icon-settings {
-  background: linear-gradient(145deg, #aeb5bf, #69717e);
-  color: white;
+  background: linear-gradient(145deg, #c9cdd3, #7b828e);
+  color: #fff;
 }
 
-/* ---------- 9. DOCK ---------- */
+/* Label lebih jelas di atas wallpaper */
+.app-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05px;
+  text-shadow:
+    0 1px 3px #000,
+    0 2px 7px #0008;
+}
 
+/* Dock transparan seperti iOS */
 .app-dock {
-  width: 100%;
-  min-height: 92px;
-  margin-top: auto;
-  padding: 13px 12px 10px;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-items: center;
-  gap: 9px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 28px;
-  background: rgba(235, 232, 235, 0.23);
-  -webkit-backdrop-filter: blur(28px);
-  backdrop-filter: blur(28px);
-}
-
-.dock-item {
-  min-width: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  background: transparent;
+  min-height: 88px;
+  margin-bottom: 1px;
+  padding: 11px 8px 9px;
+  gap: 5px;
+  border: 1px solid #ffffff35;
+  border-radius: 27px;
+  background: rgba(245, 243, 248, 0.24);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  backdrop-filter: blur(30px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 #ffffff25,
+    0 8px 22px #0002;
 }
 
 .dock-item .app-icon {
-  width: 51px;
-  height: 51px;
-  border-radius: 15px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
 }
 
 .dock-item .app-label {
   font-size: 9px;
 }
 
-/* ---------- 10. APP SCREEN ---------- */
-
-.app-screen {
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  background-image:
-    linear-gradient(
-      180deg,
-      rgba(248, 246, 245, 0.98),
-      rgba(239, 237, 237, 0.98)
-    );
-  background-color: #f5f4f4;
-  color: #252429;
-}
-
-.app-header {
-  min-height: 100px;
-  padding: 52px 17px 12px;
-  display: grid;
-  grid-template-columns: 54px minmax(0, 1fr) 54px;
-  align-items: center;
-  gap: 5px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-  background: rgba(250, 249, 249, 0.94);
-}
-
-.app-back-button,
-.app-menu-button {
-  min-height: 38px;
-  padding: 7px;
-  border-radius: 12px;
-  background: transparent;
-  color: #3d79c9;
-  font-size: 14px;
-  font-weight: 550;
-}
-
-.app-menu-button {
-  color: #55515a;
-  font-size: 20px;
-}
-
-.app-title {
-  overflow: hidden;
-  font-size: 17px;
-  font-weight: 700;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.app-content {
-  min-height: 0;
-  flex: 1;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 18px 16px 35px;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-}
-
-.app-content button {
-  max-width: 100%;
-}
-
-/* ---------- 11. HOME INDICATOR ---------- */
-
-.home-indicator {
-  position: absolute;
-  z-index: 110;
-  bottom: 8px;
-  left: 50%;
-  width: 135px;
-  height: 5px;
-  transform: translateX(-50%);
-  border-radius: 99px;
-  background: #fff;
-  opacity: 0.95;
-  pointer-events: none;
-}
-
-/* Saat membuka aplikasi, indikator menyesuaikan warna layar. */
-
-.app-screen ~ .home-indicator {
-  background: #29282c;
-}
-
-/* ---------- 12. TRANSISI ---------- */
-
+/* Efek sentuhan yang halus */
 .app-item,
-.dock-item,
-.lock-shortcut,
-.passcode-key,
-.app-back-button,
-.app-menu-button {
-  transition:
-    transform 150ms ease,
-    opacity 150ms ease,
-    background-color 150ms ease;
+.dock-item {
+  transition: transform 160ms ease, opacity 160ms ease;
 }
 
 .app-item:active,
 .dock-item:active {
   transform: scale(0.91);
-  opacity: 0.85;
+  opacity: 0.82;
 }
 
-/* ---------- 13. RESPONSIF UNTUK ANDROID ---------- */
-
-/* HP pendek: kurangi jarak agar tombol tetap terjangkau. */
-
+/* Perbaiki posisi pada HP dengan layar pendek */
 @media (max-height: 700px) {
-  .phone {
-    min-height: 0;
-    border-radius: 32px;
-  }
-
-  .lock-content {
-    inset-top: 55px;
-  }
-
-  .lock-date {
-    margin-top: 8px;
-    font-size: 14px;
-  }
-
-  .lock-time {
-    font-size: 76px;
-  }
-
-  .notification-area {
-    margin-top: 17px;
-  }
-
-  .unlock-button {
-    bottom: 56px;
-  }
-
-  .passcode-content {
-    inset: 65px 0 35px;
-    padding-top: 3px;
-  }
-
-  .passcode-title {
-    margin-top: 5px;
-    font-size: 21px;
-  }
-
-  .passcode-dots {
-    margin: 20px 0 5px;
-  }
-
-  .passcode-keypad {
-    gap: 7px 16px;
-    margin-bottom: 8px;
-  }
-
-  .passcode-key {
-    width: 55px;
-    height: 55px;
-  }
-
   .home-screen {
-    padding-top: 54px;
+    padding-top: 53px;
+    padding-bottom: 26px;
   }
 
   .home-header {
-    margin-bottom: 16px;
+    margin-bottom: 17px;
   }
 
   .app-grid {
-    row-gap: 16px;
+    row-gap: 17px;
   }
 
-  .app-dock {
-    min-height: 78px;
-    padding-top: 9px;
+  .app-icon {
+    width: 51px;
+    height: 51px;
   }
 
   .dock-item .app-icon {
@@ -822,53 +184,15 @@ button:active {
   }
 }
 
-/* HP sangat sempit */
-
+/* Cegah ikon terlalu besar di layar sempit */
 @media (max-width: 350px) {
-  body {
-    padding: 0;
+  .app-icon {
+    width: 49px;
+    height: 49px;
+    border-radius: 13px;
   }
 
-  .phone {
-    width: 100%;
-    height: 100dvh;
-    min-height: 0;
-    border-radius: 0;
-    border: 0;
-  }
-
-  :root {
-    --screen-padding: 18px;
-    --icon-size: 49px;
-  }
-
-  .app-grid {
-    column-gap: 5px;
-    row-gap: 18px;
-  }
-
-  .app-label {
-    font-size: 10px;
-  }
-
-  .passcode-content {
-    padding-left: 25px;
-    padding-right: 25px;
-  }
-
-  .passcode-keypad {
-    gap: 9px 12px;
-  }
-}
-
-/* ---------- 14. AKSESIBILITAS ---------- */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+  .app-dock {
+    padding-inline: 5px;
   }
 }
