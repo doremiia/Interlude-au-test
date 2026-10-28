@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <!-- FUNGSI: Mendukung karakter dan teks bahasa Indonesia -->
+  <meta charset="UTF-8">
+
+  <!-- JANGAN HAPUS: Menyesuaikan website dengan layar HP Android -->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <!-- UBAH: Warna browser saat website dibuka -->
+  <meta name="theme-color" content="#111111">
+
+  <!-- UBAH: Deskripsi website -->
+  <meta
+    name="description"
+    content="Interlude AU — an interactive fictional phone experience."
+  >
+
+  <!-- UBAH: Judul website -->
+  <title>Interlude AU</title>
+
+  <!-- JANGAN HAPUS: File desain -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- JANGAN HAPUS: File interaksi -->
+  <script src="./script.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ================================================== -->
+  <!-- BAGIAN 1: KERANGKA PONSEL                           -->
+  <!-- ================================================== -->
+
+  <!-- JANGAN HAPUS: Semua layar ponsel berada di dalam elemen ini -->
+  <main id="phone" class="phone" aria-label="Interlude virtual phone">
+
+
+    <!-- ================================================== -->
+    <!-- BAGIAN 2: STATUS BAR                               -->
+    <!-- ================================================== -->
+
+    <!-- FUNGSI: Status bar tetap berada di atas layar -->
+    <header id="status-bar" class="status-bar">
+
+      <!-- TODO: Jam akan dibuat dinamis melalui JavaScript -->
+      <span id="status-time">9:41</span>
+
+      <!-- FUNGSI: Indikator status jaringan dan baterai -->
+      <div class="status-icons" aria-label="Phone status">
+
+        <!-- TODO: Ganti simbol sementara dengan ikon yang lebih realistis -->
+        <span class="signal-icon" aria-label="Signal">●●●</span>
+
+        <span class="wifi-icon" aria-label="Wi-Fi">Wi-Fi</span>
+
+        <!-- FUNGSI: Indikator baterai -->
+        <span class="battery" aria-label="Battery">
+          <span class="battery-level"></span>
+        </span>
+
+      </div>
+    </header>
+
+
+    <!-- ================================================== -->
+    <!-- BAGIAN 3: LOCK SCREEN                              -->
+    <!-- ================================================== -->
+
+    <!-- FUNGSI: Layar pertama saat pembaca membuka website -->
+    <section
+      id="lock-screen"
+      class="screen lock-screen"
+      aria-label="Lock screen"
+    >
+
+      <div class="lock-content">
+
+        <!-- TODO: Tanggal disesuaikan dengan waktu cerita -->
+        <p id="lock-date" class="lock-date">
+          Monday, September 1
+        </p>
+
+        <!-- TODO: Jam besar akan disinkronkan dengan status bar -->
+        <h1 id="lock-time" class="lock-time">09:41</h1>
+
+        <!-- UBAH: Teks kecil di bawah jam -->
+        <p class="lock-subtitle">Interlude AU</p>
+
+      </div>
+
+
+      <!-- ================================================== -->
+      <!-- NOTIFIKASI LOCK SCREEN                            -->
+      <!-- ================================================== -->
+
+      <!-- FUNGSI: Tempat notifikasi pesan dan aktivitas aplikasi -->
+      <div
+        id="notification-area"
+        class="notification-area"
+        aria-label="Notifications"
+        aria-live="polite"
+      >
+
+        <!-- TODO: JavaScript akan menambahkan notifikasi di sini -->
+
+      </div>
+
+
+      <!-- ================================================== -->
+      <!-- TOMBOL BAWAH LOCK SCREEN                          -->
+      <!-- ================================================== -->
+
+      <div class="lock-bottom">
+
+        <!-- TODO: Shortcut senter; belum aktif -->
+        <button
+          id="flashlight-button"
+          class="lock-shortcut"
+          type="button"
+          aria-label="Flashlight"
+          disabled
+        >
+          <span aria-hidden="true">◉</span>
+        </button>
+
+
+        <!-- FUNGSI: Membuka layar passcode -->
+        <button
+          id="unlock-button"
+          class="unlock-button"
+          type="button"
+        >
+          Tap to unlock
+        </button>
+
+
+        <!-- TODO: Shortcut kamera; belum aktif -->
+        <button
+          id="camera-button"
+          class="lock-shortcut"
+          type="button"
+          aria-label="Camera"
+          disabled
+        >
+          <span aria-hidden="true">▣</span>
+        </button>
+
+      </div>
+    </section>
+
+
+    <!-- ================================================== -->
+    <!-- BAGIAN 4: PASSCODE SCREEN                          -->
+    <!-- ================================================== -->
+
+    <!-- FUNGSI: Layar kode sandi sebelum masuk ke home screen -->
+    <!-- TODO: JavaScript akan mengatur input kode dan perpindahan layar -->
+    <section
+      id="passcode-screen"
+      class="screen passcode-screen"
+      aria-label="Passcode screen"
+      hidden
+    >
+
+      <div class="passcode-content">
+
+        <!-- UBAH: Judul layar passcode -->
+        <h2 class="passcode-title">Enter Passcode</h2>
+
+        <p class="passcode-description">
+          Enter your passcode to continue.
+        </p>
+
+        <!-- FUNGSI: Indikator jumlah digit yang dimasukkan -->
+        <div
+          id="passcode-dots"
+          class="passcode-dots"
+          aria-label="Passcode entry"
+          aria-live="polite"
+        >
+          <span class="passcode-dot"></span>
+          <span class="passcode-dot"></span>
+          <span class="passcode-dot"></span>
+          <span class="passcode-dot"></span>
+        </div>
+
+        <!-- FUNGSI: Pesan kesalahan kode sandi -->
+        <p
+          id="passcode-error"
+          class="passcode-error"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <!-- TODO: JavaScript akan membaca tombol angka -->
+        <div id="passcode-keypad" class="passcode-keypad">
+
+          <button type="button" class="passcode-key" data-digit="1">1</button>
+          <button type="button" class="passcode-key" data-digit="2">2</button>
+          <button type="button" class="passcode-key" data-digit="3">3</button>
+
+          <button type="button" class="passcode-key" data-digit="4">4</button>
+          <button type="button" class="passcode-key" data-digit="5">5</button>
+          <button type="button" class="passcode-key" data-digit="6">6</button>
+
+          <button type="button" class="passcode-key" data-digit="7">7</button>
+          <button type="button" class="passcode-key" data-digit="8">8</button>
+          <button type="button" class="passcode-key" data-digit="9">9</button>
+
+          <button
+            type="button"
+            id="passcode-delete"
+            class="passcode-action"
+          >
+            Delete
+          </button>
+
+          <button type="button" class="passcode-key" data-digit="0">0</button>
+
+          <button
+            type="button"
+            id="passcode-cancel"
+            class="passcode-action"
+          >
+            Cancel
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================================================== -->
+    <!-- BAGIAN 5: HOME SCREEN                              -->
+    <!-- ================================================== -->
+
+    <!-- FUNGSI: Home screen muncul setelah ponsel dibuka -->
+    <section
+      id="home-screen"
+      class="screen home-screen"
+      aria-label="Home screen"
+      hidden
+    >
+
+      <!-- FUNGSI: Bagian informasi dan sapaan -->
+      <header class="home-header">
+
+        <!-- TODO: Tanggal mengikuti timeline AU -->
+        <p id="home-date" class="home-date">
+          Monday, September 1
+        </p>
+
+        <!-- UBAH: Sapaan di home screen -->
+        <p class="home-greeting">Your little world.</p>
+
+      </header>
+
+
+      <!-- ================================================== -->
+      <!-- BAGIAN 5A: APP GRID                               -->
+      <!-- ================================================== -->
+
+      <!-- FUNGSI: Ikon aplikasi yang dapat dibuka -->
+      <nav
+        id="app-grid"
+        class="app-grid"
+        aria-label="Applications"
+      >
+
+        <!-- APLIKASI: Messages -->
+        <button class="app-item" type="button" data-app="messages">
+          <span class="app-icon icon-messages" aria-hidden="true">✉</span>
+          <span class="app-label">Messages</span>
+        </button>
+
+        <!-- APLIKASI: Instagram -->
+        <button class="app-item" type="button" data-app="instagram">
+          <span class="app-icon icon-instagram" aria-hidden="true">◎</span>
+          <span class="app-label">Instagram</span>
+        </button>
+
+        <!-- APLIKASI: Photos -->
+        <button class="app-item" type="button" data-app="photos">
+          <span class="app-icon icon-photos" aria-hidden="true">✿</span>
+          <span class="app-label">Photos</span>
+        </button>
+
+        <!-- APLIKASI: Notes -->
+        <button class="app-item" type="button" data-app="notes">
+          <span class="app-icon icon-notes" aria-hidden="true">▤</span>
+          <span class="app-label">Notes</span>
+        </button>
+
+        <!-- APLIKASI: Safari -->
+        <button class="app-item" type="button" data-app="safari">
+          <span class="app-icon icon-safari" aria-hidden="true">◉</span>
+          <span class="app-label">Safari</span>
+        </button>
+
+        <!-- APLIKASI: Phone -->
+        <button class="app-item" type="button" data-app="phone">
+          <span class="app-icon icon-phone" aria-hidden="true">☎</span>
+          <span class="app-label">Phone</span>
+        </button>
+
+        <!-- APLIKASI: Contacts -->
+        <button class="app-item" type="button" data-app="contacts">
+          <span class="app-icon icon-contacts" aria-hidden="true">♟</span>
+          <span class="app-label">Contacts</span>
+        </button>
+
+        <!-- APLIKASI: Calendar -->
+        <button class="app-item" type="button" data-app="calendar">
+          <span class="app-icon icon-calendar" aria-hidden="true">31</span>
+          <span class="app-label">Calendar</span>
+        </button>
+
+        <!-- APLIKASI: Files -->
+        <button class="app-item" type="button" data-app="files">
+          <span class="app-icon icon-files" aria-hidden="true">▰</span>
+          <span class="app-label">Files</span>
+        </button>
+
+        <!-- APLIKASI: Settings -->
+        <button class="app-item" type="button" data-app="settings">
+          <span class="app-icon icon-settings" aria-hidden="true">⚙</span>
+          <span class="app-label">Settings</span>
+        </button>
+
+        <!-- TODO: Tambahkan aplikasi lain jika dibutuhkan cerita -->
+
+      </nav>
+
+
+      <!-- ================================================== -->
+      <!-- BAGIAN 5B: DOCK                                  -->
+      <!-- ================================================== -->
+
+      <!-- FUNGSI: Bar aplikasi favorit di bawah home screen -->
+      <nav id="app-dock" class="app-dock" aria-label="Dock">
+
+        <!-- UBAH: Aplikasi yang ingin ditampilkan di dock -->
+
+        <button
+          class="dock-item"
+          type="button"
+          data-app="phone"
+          aria-label="Phone"
+        >
+          <span class="app-icon icon-phone" aria-hidden="true">☎</span>
+        </button>
+
+        <button
+          class="dock-item"
+          type="button"
+          data-app="messages"
+          aria-label="Messages"
+        >
+          <span class="app-icon icon-messages" aria-hidden="true">✉</span>
+        </button>
+
+        <button
+          class="dock-item"
+          type="button"
+          data-app="safari"
+          aria-label="Safari"
+        >
+          <span class="app-icon icon-safari" aria-hidden="true">◉</span>
+        </button>
+
+        <button
+          class="dock-item"
+          type="button"
+          data-app="photos"
+          aria-label="Photos"
+        >
+          <span class="app-icon icon-photos" aria-hidden="true">✿</span>
+        </button>
+
+      </nav>
+    </section>
+
+
+    <!-- ================================================== -->
+    <!-- BAGIAN 6: APP SCREEN                               -->
+    <!-- ================================================== -->
+
+    <!-- FUNGSI: Wadah konten saat aplikasi dibuka -->
+    <section
+      id="app-screen"
+      class="screen app-screen"
+      aria-label="Open application"
+      hidden
+    >
+
+      <!-- FUNGSI: Header aplikasi -->
+      <header class="app-header">
+
+        <!-- FUNGSI: Kembali ke home screen atau layar sebelumnya -->
+        <button
+          id="app-back-button"
+          class="app-back-button"
+          type="button"
+          aria-label="Back"
+        >
+          ‹
+        </button>
+
+        <!-- TODO: Judul berubah mengikuti aplikasi yang dibuka -->
+        <h2 id="app-title" class="app-title">Application</h2>
+
+        <!-- TODO: Menu aplikasi jika fitur tambahan dibutuhkan -->
+        <button
+          id="app-menu-button"
+          class="app-menu-button"
+          type="button"
+          aria-label="More options"
+        >
+          •••
+        </button>
+
+      </header>
+
+
+      <!-- ================================================== -->
+      <!-- KONTEN APLIKASI                                   -->
+      <!-- ================================================== -->
+
+      <!-- JANGAN HAPUS: JavaScript akan menampilkan isi aplikasi di sini -->
+      <div id="app-content" class="app-content">
+
+        <!-- TODO: Messages, Instagram, Photos, Notes, dan aplikasi lainnya -->
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================== -->
+    <!-- BAGIAN 7: HOME INDICATOR                           -->
+    <!-- ================================================== -->
+
+    <!-- FUNGSI: Tombol navigasi bawah seperti iPhone -->
+    <button
+      id="home-indicator"
+      class="home-indicator"
+      type="button"
+      aria-label="Return to home screen"
+    ></button>
+
+  </main>
+
+</body>
+</html>
